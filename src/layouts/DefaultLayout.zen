@@ -1,0 +1,154 @@
+<script setup="ts">
+    // interface Props { title?: string; lang?: string }
+    
+    zenEffect(() => {
+        document.title = title || 'Zenith App'
+    })
+    
+    zenOnMount(() => {
+        console.log(`[Layout] Mounted with title: ${title || 'Zenith App'}`)
+    })
+</script>
+
+<html lang={lang || 'en'}>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="/logo.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/global.css">
+</head>
+<body>
+    <div class="layout">
+        <header class="header">
+            <nav class="nav">
+                <a href="/" class="nav-logo">
+                    <img src="/logo.svg" alt="Zenith Logo" class="logo-img">
+                    <span class="logo-text">Zenith</span>
+                </a>
+                <div class="nav-links">
+                    <a href="https://github.com/zenithbuild/zenith" target="_blank" class="nav-link">GitHub</a>
+                </div>
+            </nav>
+        </header>
+        
+        <main class="content">
+            <slot />
+        </main>
+        
+        <footer class="footer">
+            <div class="footer-content">
+                <img src="/logo.svg" alt="Zenith" class="footer-logo">
+                <p>Built with ⚡ Zenith Framework</p>
+                <div class="footer-links">
+                    <a href="https://github.com/judahsullivan" target="_blank">@judahsullivan</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
+
+<style>
+    .layout {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .header {
+        position: sticky;
+    background: var(--zen-bg);top: 0;
+        z-index: 100;
+    }
+    
+    .nav {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        text-decoration: none;
+        transition: opacity 0.2s;
+    }
+    
+    .nav-logo:hover {
+        opacity: 0.8;
+    }
+    
+    .logo-img {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .logo-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: -0.025em;
+        background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+    }
+    
+    .nav-links a {
+        color: #94a3b8;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    
+    .nav-links a:hover {
+        color: #f1f5f9;
+    }
+    
+    .content {
+        flex: 1;
+    }
+    
+    .footer {
+        background: #020617;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        padding: 4rem 2rem;
+        color: #64748b;
+    }
+    
+    .footer-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .footer-logo {
+        width: 24px;
+        height: 24px;
+        opacity: 0.5;
+        filter: grayscale(1);
+    }
+    
+    .footer-links a {
+        color: #94a3b8;
+        font-size: 0.875rem;
+        text-decoration: none;
+        transition: color 0.2s;
+    }
+    
+    .footer-links a:hover {
+        color: #3b82f6;
+    }
+</style>
